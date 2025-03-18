@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Audio Player</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .audio-player {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Audio</h1>
+    {% if audio_files %}
+      {% for file in audio_files %}
+      <div class="audio-player">
+        <h3>{{ file }}</h3>
+        {% if file.endswith('.mp3') %}
+        <audio controls>
+          <source src="{{ url_for('serve_file', filename=file) }}" type="audio/mpeg">
+          Your browser does not support this audio type
+        </audio>
+        {% endif %}
+        {% if file.endswith('.wav') %}
+        <audio controls>
+          <source src="{{ url_for('serve_file', filename=file) }}" type="audio/wav">
+          Your browser does not support this audio type
+        </audio>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <h2><a href="/vocal">Vocal Separation</a></h2>
+    {% else %}
+      <p>No audio files found. Please upload some audio files to the uploads directory.</p>
+      <h2><a href="/upload">Upload audio</a></h2>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Vocal Separation</title>
+  </head>
+  <body>
+    <h1>Vocal Separation</h1>
+    <form action="/separate" method="post">
+      <label for="audio_file">Select an audio file:</label>
+      <select name="audio_file" id="audio_file" required>
+        {% for file in audio_files %}
+          <option value="{{ file }}">{{ file }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      <input type="submit" value="Separate Voices">
+    </form>
+    <br>
+    <h2><a href="/">Back to Home</a></h2>
+  </body>
+</html>
